@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvolpi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mvolpi <mvolpi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 14:56:09 by mvolpi            #+#    #+#             */
-/*   Updated: 2022/01/12 14:59:01 by mvolpi           ###   ########.fr       */
+/*   Updated: 2022/09/19 10:52:45 by mvolpi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../h_file/libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {

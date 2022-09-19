@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mvolpi <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: mvolpi <mvolpi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:44:30 by mvolpi            #+#    #+#             */
-/*   Updated: 2022/01/14 14:45:11 by mvolpi           ###   ########.fr       */
+/*   Updated: 2022/09/19 10:54:10 by mvolpi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../h_file/libft.h"
 
 int	ft_is_separator(char c, char cr)
 {

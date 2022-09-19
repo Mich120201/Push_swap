@@ -6,72 +6,65 @@
 /*   By: mvolpi <mvolpi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 10:46:23 by mvolpi            #+#    #+#             */
-/*   Updated: 2022/02/02 10:31:07 by mvolpi           ###   ########.fr       */
+/*   Updated: 2022/09/19 11:00:54 by mvolpi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../h_file/ft_printf.h"
 
-void	ft_check(const char *str, va_list list, int *j, int i)
-{
-	string_tr(&str[i], list, j);
-	hex_tr(&str[i], list, j);
-	udi_tr(&str[i], list, j);
-}
-
-void	ft_hex(unsigned int x, int i, int *r)
+void	ft_hex_x(unsigned int x, int i, int *j)
 {
 	if (x >= 16)
 	{
-		ft_hex(x / 16, i, r);
-		ft_hex(x % 16, i, r);
+		ft_hex_x(x / 16, i, j);
+		ft_hex_x(x % 16, i, j);
 	}
 	else
 	{
 		if (i == 0)
-			*r += write(1, &"0123456789ABCDEF"[x], 1);
+			*j += write(1, &"0123456789ABCDEF"[x], 1);
 		else if (i == 1)
-			*r += write(1, &"0123456789abcdef"[x], 1);
+			*j += write(1, &"0123456789abcdef"[x], 1);
 	}
 }
 
-void	ft_putnbr(int nb, int *r)
+void	ft_hex_p(unsigned long x, int *j)
+{
+	char	*hex;
+
+	hex = "0123456789abcdef";
+	if (x >= 16)
+		ft_hex_p(x / 16, j);
+	*j += write(1, &hex[x % 16], 1);
+}
+
+void	ft_putnbr(int nb, int *j)
 {
 	char	*num;
 
 	num = "0123456789";
 	if (nb == -2147483648)
 	{
-		*r += write(1, "-2147483648", 11);
+		*j += write(1, "-2147483648", 11);
 		return ;
 	}
 	if (nb < 0)
 	{
-		*r += write(1, "-", 1);
+		*j += write(1, "-", 1);
 		nb *= -1;
 	}
-	if (nb > 9)
-		ft_putnbr(nb / 10, r);
-	*r += write(1, &num[nb % 10], 1);
+	if (nb >= 10)
+		ft_putnbr(nb / 10, j);
+	*j += write(1, &num[nb % 10], 1);
 }
 
-void	ft_hexp(unsigned long x, int *r)
-{
-	char	*hex;
-
-	hex = "0123456789abcdef";
-	if (x >= 16)
-		ft_hexp(x / 16, r);
-	*r += write(1, &hex[x % 16], 1);
-}
-
-void	unsigned_tr(unsigned int n, int *r)
+void	ft_putnbr_u(unsigned int n, int *j)
 {
 	if (n >= 10)
 	{
-		unsigned_tr(n / 10, r);
-		unsigned_tr(n % 10, r);
+		ft_putnbr_u(n / 10, j);
+		ft_putnbr_u(n % 10, j);
 	}
 	else
-		*r += write(1, &"0123456789"[n], 1);
+		*j += write(1, &"0123456789"[n], 1);
 }
